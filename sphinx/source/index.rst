@@ -13,7 +13,7 @@ Contents:
    :maxdepth: 2
 
    section-1
-
+   appendix-1
 
 Indices and tables
 ==================
