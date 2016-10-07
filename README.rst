@@ -4,7 +4,7 @@ write a new Jupyter kernel for those systems.
 
 The documentation sources are in the folder ``sphinx`` whereas the built
 HTML files will go to ``docs`` (GitHub pages:
-https://nilqed.github.io/webspad). 
+https://nilqed.github.io/webSPAD). 
 
 Below is an excerpt from the appendix in order to demonstrate the idea.
 
