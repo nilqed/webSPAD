@@ -17,7 +17,6 @@ Paste the following code into a file ``minserver.lisp``
   (load "~/quicklisp/setup")
   (ql:quickload :hunchentoot)
 
-  ;;; test: http://localhost:4242/eval?code=D(x^n,x,6)
 
   (in-package :boot)
 
@@ -39,7 +38,7 @@ Paste the following code into a file ``minserver.lisp``
   (hunchentoot:start (make-instance 'hunchentoot:easy-acceptor :port +port+))
 
   ;;; add :address "localhost"  if you wish local access only!
-  
+  ;;; test example: http://localhost:4242/eval?code=D(x^n,x,6)  
   
 Load server
 -----------
@@ -95,7 +94,7 @@ query will be evaluated and the result formatted and written to the client.
 
 GET and POST
 ------------
-:Source: http://www.w3schools.com/TAGS/ref_httpmethods.asp) 
+:Source: http://www.w3schools.com/TAGS/ref_httpmethods.asp
 
 Two commonly used methods for a request-response between a client and server 
 are::
@@ -118,9 +117,9 @@ URL is limited (maximum URL length is **2048** characters and ``ASCII``
 characters only are allowed.
 
 Certain character have a special meaning in an URL, so url encoding must 
-follow some rules_ (HTML URL Encoding Reference).
+follow some `rules`_ (HTML URL Encoding Reference).
 
-.. _rules
+.. _rules: http://www.w3schools.com/tags/ref_urlencode.asp
 
 The POST Method
 ~~~~~~~~~~~~~~~
@@ -171,4 +170,12 @@ Live action::
     
     >>>
   
-With the POST method we can use high *payloads*. 
+With the POST method we can use high *payloads* and there are many languages 
+with HTTP support libraries. 
+
+Conclusion
+----------
+This skeleton example shows the general method and of course only uses the 
+most basic features of *Hunchentoot*. We can define many more easy handlers 
+and other - even more sophisticated - methods to access the internals of 
+*FriCAS* by HTTP requests. The sky is the limit ;-) 

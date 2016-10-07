@@ -58,7 +58,6 @@ respectively.</p>
 <div class="code highlight-default"><div class="highlight"><pre><span></span>(load &quot;~/quicklisp/setup&quot;)
 (ql:quickload :hunchentoot)
 
-;;; test: http://localhost:4242/eval?code=D(x^n,x,6)
 
 (in-package :boot)
 
@@ -80,6 +79,7 @@ respectively.</p>
 (hunchentoot:start (make-instance &#39;hunchentoot:easy-acceptor :port +port+))
 
 ;;; add :address &quot;localhost&quot;  if you wish local access only!
+;;; test example: http://localhost:4242/eval?code=D(x^n,x,6)
 </pre></div>
 </div>
 </div>
@@ -139,7 +139,7 @@ query will be evaluated and the result formatted and written to the client.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Source:</th><td class="field-body"><a class="reference external" href="http://www.w3schools.com/TAGS/ref_httpmethods.asp">http://www.w3schools.com/TAGS/ref_httpmethods.asp</a>)</td>
+<tr class="field-odd field"><th class="field-name">Source:</th><td class="field-body"><a class="reference external" href="http://www.w3schools.com/TAGS/ref_httpmethods.asp">http://www.w3schools.com/TAGS/ref_httpmethods.asp</a></td>
 </tr>
 </tbody>
 </table>
@@ -169,7 +169,7 @@ request:</p>
 <p>URL is limited (maximum URL length is <strong>2048</strong> characters and <code class="docutils literal"><span class="pre">ASCII</span></code>
 characters only are allowed.</p>
 <p>Certain character have a special meaning in an URL, so url encoding must
-follow some <a href="#id1"><span class="problematic" id="id2">rules_</span></a> (HTML URL Encoding Reference).</p>
+follow some <a class="reference external" href="http://www.w3schools.com/tags/ref_urlencode.asp">rules</a> (HTML URL Encoding Reference).</p>
 </div>
 <div class="section" id="the-post-method">
 <h3>The POST Method<a class="headerlink" href="#the-post-method" title="Permalink to this headline">¶</a></h3>
@@ -217,7 +217,15 @@ possibilities.</p>
 <span class="o">&gt;&gt;&gt;</span>
 </pre></div>
 </div>
-<p>With the POST method we can use high <em>payloads</em>.</p>
+<p>With the POST method we can use high <em>payloads</em> and there are many languages
+with HTTP support libraries.</p>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<p>This skeleton example shows the general method and of course only uses the
+most basic features of <em>Hunchentoot</em>. We can define many more easy handlers
+and other - even more sophisticated - methods to access the internals of
+<em>FriCAS</em> by HTTP requests. The sky is the limit ;-)</p>
 </div>
 </div>
 
@@ -240,6 +248,7 @@ possibilities.</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#python-example-for-post">Python example for POST</a></li>
+<li><a class="reference internal" href="#conclusion">Conclusion</a></li>
 </ul>
 </li>
 </ul>

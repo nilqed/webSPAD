@@ -1,4 +1,12 @@
-.. example of a minimal HT embedding
+**webSPAD** is a project in progress and its goal is to provide web 
+services for **FriCAS** and friends. Eventually it shall serve to 
+write a new Jupyter kernel for those systems. 
+
+The documentation sources are in the folder ``sphinx`` whereas the built
+HTML files will go to ``docs`` (GitHub pages:
+https://nilqed.github.io/webspad). 
+
+Below is an excerpt from the appendix in order to demonstrate the idea.
 
 ================================
 Minimal embedding of Hunchentoot
