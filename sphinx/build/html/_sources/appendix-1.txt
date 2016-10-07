@@ -114,9 +114,13 @@ request::
 
 
 :Restrictions: The GET method adds the data to the URL; and the length of a 
-URL is limited (maximum URL length is 2048 characters and ``ASCII`` characters 
-only are allowed.
+URL is limited (maximum URL length is **2048** characters and ``ASCII`` 
+characters only are allowed.
 
+Certain character have a special meaning in an URL, so url encoding must 
+follow some rules_ (HTML URL Encoding Reference).
+
+.. _rules
 
 The POST Method
 ~~~~~~~~~~~~~~~
@@ -134,3 +138,37 @@ possibilities.
 Python example for POST
 -----------------------
 
+.. code:: python
+
+  import requests
+  url = 'http://localhost:4242/eval'
+  payload = {'code': 'D(x^n,x,8)'}
+
+  r = requests.post(url, data=payload)
+
+  print(r.text)
+
+  
+Live action::
+    
+    
+    C:\Users\nilqed>python
+    Python 2.7.10 (default, May 23 2015, 09:40:32) [MSC v.1500 32 bit (Intel)]
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> import requests
+    >>> url = 'http://localhost:4242/eval'
+    >>> payload = {'code': 'D(x^n,x,8)'}
+    >>> r = requests.post(url, data=payload)
+    >>> r
+    <Response [200]>
+    >>> print(r.text)
+    
+         8      7       6        5        4         3         2          n - 8
+       (n  - 28n  + 322n  - 1960n  + 6769n  - 13132n  + 13068n  - 5040n)x
+                                                       
+                                                      Type: Expression(Integer)
+    
+    
+    >>>
+  
+With the POST method we can use high *payloads*. 

@@ -166,8 +166,10 @@ request:</p>
 </tr>
 </tbody>
 </table>
-<p>URL is limited (maximum URL length is 2048 characters and <code class="docutils literal"><span class="pre">ASCII</span></code> characters
-only are allowed.</p>
+<p>URL is limited (maximum URL length is <strong>2048</strong> characters and <code class="docutils literal"><span class="pre">ASCII</span></code>
+characters only are allowed.</p>
+<p>Certain character have a special meaning in an URL, so url encoding must
+follow some <a href="#id1"><span class="problematic" id="id2">rules_</span></a> (HTML URL Encoding Reference).</p>
 </div>
 <div class="section" id="the-post-method">
 <h3>The POST Method<a class="headerlink" href="#the-post-method" title="Permalink to this headline">¶</a></h3>
@@ -185,6 +187,37 @@ possibilities.</p>
 </div>
 <div class="section" id="python-example-for-post">
 <h2>Python example for POST<a class="headerlink" href="#python-example-for-post" title="Permalink to this headline">¶</a></h2>
+<div class="code python highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://localhost:4242/eval&#39;</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;D(x^n,x,8)&#39;</span><span class="p">}</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Live action:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">C</span><span class="p">:</span>\<span class="n">Users</span>\<span class="n">nilqed</span><span class="o">&gt;</span><span class="n">python</span>
+<span class="n">Python</span> <span class="mf">2.7</span><span class="o">.</span><span class="mi">10</span> <span class="p">(</span><span class="n">default</span><span class="p">,</span> <span class="n">May</span> <span class="mi">23</span> <span class="mi">2015</span><span class="p">,</span> <span class="mi">09</span><span class="p">:</span><span class="mi">40</span><span class="p">:</span><span class="mi">32</span><span class="p">)</span> <span class="p">[</span><span class="n">MSC</span> <span class="n">v</span><span class="o">.</span><span class="mi">1500</span> <span class="mi">32</span> <span class="n">bit</span> <span class="p">(</span><span class="n">Intel</span><span class="p">)]</span>
+<span class="n">Type</span> <span class="s2">&quot;help&quot;</span><span class="p">,</span> <span class="s2">&quot;copyright&quot;</span><span class="p">,</span> <span class="s2">&quot;credits&quot;</span> <span class="ow">or</span> <span class="s2">&quot;license&quot;</span> <span class="k">for</span> <span class="n">more</span> <span class="n">information</span><span class="o">.</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">requests</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://localhost:4242/eval&#39;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;code&#39;</span><span class="p">:</span> <span class="s1">&#39;D(x^n,x,8)&#39;</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">payload</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">r</span>
+<span class="o">&lt;</span><span class="n">Response</span> <span class="p">[</span><span class="mi">200</span><span class="p">]</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+     <span class="mi">8</span>      <span class="mi">7</span>       <span class="mi">6</span>        <span class="mi">5</span>        <span class="mi">4</span>         <span class="mi">3</span>         <span class="mi">2</span>          <span class="n">n</span> <span class="o">-</span> <span class="mi">8</span>
+   <span class="p">(</span><span class="n">n</span>  <span class="o">-</span> <span class="mi">28</span><span class="n">n</span>  <span class="o">+</span> <span class="mi">322</span><span class="n">n</span>  <span class="o">-</span> <span class="mi">1960</span><span class="n">n</span>  <span class="o">+</span> <span class="mi">6769</span><span class="n">n</span>  <span class="o">-</span> <span class="mi">13132</span><span class="n">n</span>  <span class="o">+</span> <span class="mi">13068</span><span class="n">n</span>  <span class="o">-</span> <span class="mi">5040</span><span class="n">n</span><span class="p">)</span><span class="n">x</span>
+
+                                                  <span class="n">Type</span><span class="p">:</span> <span class="n">Expression</span><span class="p">(</span><span class="n">Integer</span><span class="p">)</span>
+
+
+<span class="o">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>With the POST method we can use high <em>payloads</em>.</p>
 </div>
 </div>
 
