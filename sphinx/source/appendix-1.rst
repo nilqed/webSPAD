@@ -12,7 +12,7 @@ The code
 --------
 Paste the following code into a file ``minserver.lisp``
     
-.. code::
+.. code:: common-lisp
 
   (load "~/quicklisp/setup")
   (ql:quickload :hunchentoot)
