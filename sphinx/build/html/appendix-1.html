@@ -168,8 +168,19 @@ request:</p>
 </table>
 <p>URL is limited (maximum URL length is <strong>2048</strong> characters and <code class="docutils literal"><span class="pre">ASCII</span></code>
 characters only are allowed.</p>
-<p>Certain character have a special meaning in an URL, so url encoding must
+<p>Certain characters have a special meaning in an URL, so url encoding must
 follow some <a class="reference external" href="http://www.w3schools.com/tags/ref_urlencode.asp">rules</a> (HTML URL Encoding Reference).</p>
+<p>There are some <a class="reference external" href="http://meyerweb.com/eric/tools/dencoder/">online</a> URL <strong>en/decoders</strong> which will encode more complex
+input, for instance:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">integrate</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="p">),</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>reads in encoded form as:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">integrate</span><span class="p">(</span><span class="mi">1</span><span class="o">%</span><span class="mi">2</span><span class="n">F</span><span class="p">(</span><span class="mi">1</span><span class="o">%</span><span class="mi">2</span><span class="n">Bx</span><span class="o">%</span><span class="mi">5</span><span class="n">E2</span><span class="p">)</span><span class="o">%</span><span class="mi">2</span><span class="n">Cx</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The latter string can be used in a url, whereas the former will not be
+accepted (e.g. due to the plus character <code class="docutils literal"><span class="pre">+</span></code>).</p>
 </div>
 <div class="section" id="the-post-method">
 <h3>The POST Method<a class="headerlink" href="#the-post-method" title="Permalink to this headline">¶</a></h3>

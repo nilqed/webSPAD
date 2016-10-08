@@ -124,10 +124,25 @@ request::
 URL is limited (maximum URL length is **2048** characters and ``ASCII`` 
 characters only are allowed.
 
-Certain character have a special meaning in an URL, so url encoding must 
+Certain characters have a special meaning in an URL, so url encoding must 
 follow some `rules`_ (HTML URL Encoding Reference).
 
 .. _rules: http://www.w3schools.com/tags/ref_urlencode.asp
+
+There are some `online`_ URL **en/decoders** which will encode more complex 
+input, for instance::
+    
+    integrate(1/(1+x^2),x)
+    
+reads in encoded form as::
+    
+    integrate(1%2F(1%2Bx%5E2)%2Cx)
+    
+The latter string can be used in a url, whereas the former will not be
+accepted (e.g. due to the plus character ``+``).
+
+.. _online: http://meyerweb.com/eric/tools/dencoder/
+    
 
 The POST Method
 ~~~~~~~~~~~~~~~
