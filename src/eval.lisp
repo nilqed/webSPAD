@@ -31,9 +31,9 @@
 (defstruct webspad-data
     (input           ""       :type string  )
     (multiline?      nil      :type boolean )
-    (spad-2d         ""       :type string  )
     (spad-type       ""       :type string  )
     (algebra         ""       :type string  )
+    (charybdis       ""       :type string  )
     (tex             ""       :type string  )
     (html            ""       :type string  )
     (mathml          ""       :type string  )
@@ -52,10 +52,7 @@
     (setf data (make-webspad-data :format-flags fmt)) ;;; ?
     (setf data (make-webspad-data :input s))
     
-    (if (ws-format-algebra fmt) 
-        (progn (setf (ws-out-stream-algebra out) boot::|$algebraOutputStream|) 
-         (setf boot::|$algebraOutputStream| (make-string-output-stream))))
-        
+    
     (if (ws-format-tex fmt) 
         (progn (setf (ws-out-stream-tex out) boot::|$texOutputStream|) 
          (setf boot::|$texOutputStream| (make-string-output-stream))))
@@ -86,10 +83,6 @@
     
     (setf alg (boot::|parseAndEvalToString| s))
  
-    (if (ws-format-algebra fmt) 
-        (progn (setf (webspad-data-algebra data) 
-                   (get-output-stream-string boot::|$algebraOutputStream|))
-           (setf boot::|$algebraOutputStream| (ws-out-stream-algebra out))))
                 
     (if (ws-format-tex fmt) 
         (progn (setf (webspad-data-tex data) 
@@ -126,15 +119,12 @@
                    (get-output-stream-string boot::|$openMathOutputStream|))
            (setf boot::|$openMathOutputStream| (ws-out-stream-openmath out))))
     
-    ;(setf (webspad-data-spad2d data) (get-alg alg))
-    ;(setf (webspad-data-spad-type data) (get-type alg))
-    (list data alg))
+    (setf (webspad-data-algebra data) (get-algform alg))
+    (setf (webspad-data-spad-type data) (get-type-string alg))
+    (setf (webspad-data-charybdis data) (get-charybdis alg))
+    data)
           
  
-        
-        
-        
-        
           
 (defun webspad-eval-if-texformat (s)
   (let ((*package* (find-package :boot)))
@@ -145,26 +135,39 @@
             (tex (get-output-stream-string boot::|$texOutputStream|)))
         (setq boot::|$texOutputStream| save)
             (make-webspad-data :input s
-                               :alg-output (get-algform alg)
-                               :spad-type  (get-type alg)
-                               :tex-output (get-texform tex))
-))))
+                               :algebra (get-algform alg)
+                               :spad-type  (get-type-string alg)
+                               :tex tex)))))
 
 (defun webspad-eval-default (s)
     (let ((alg (boot::|parseAndEvalToString| s)))
         (make-webspad-data :input s
-                           :alg-output (get-algform alg)
-                           :spad-type  (get-type alg))))
+                           :algebra  (get-algform alg)
+                           :spad-type  (get-type-string alg))))
 
-(defvar str '("abc" "def" "ghi" "123456"))
-(defvar str2 (format nil "~{~A~%~}" str))
 
-(defun concstr (list)
-;; concatenate a list of strings ; recall ~% = newline"
-;; +kfp temp solution (move this to utils later)
-(if (listp list)
-  (with-output-to-string (s)
-     (dolist (item list)
-       (if (stringp item)
-         (format s "~a~%" item))))))
 
+(defun has-type (result)
+    (let ((ts (string-trim " " (car(last result)))))
+        (if (< (length ts) 5) nil
+          (if (string-equal (subseq ts 0 5) "Type:") t nil))))
+
+
+(defun has-error (result)
+    (if (string-equal (car result) "error") t nil))
+
+
+(defun get-type (result)
+    (let ((ts (string-trim " " (car(last result)))))
+        (string-trim " " (subseq ts 6))))
+
+
+(defun get-algform (result)
+    (format nil "~{~A~%~}" (butlast result)))
+
+(defun get-charybdis (result)
+    (format nil "~{~A~%~}" result))
+
+(defun get-type-string (result)
+    (if (has-type result) 
+        (get-type result) ""))
