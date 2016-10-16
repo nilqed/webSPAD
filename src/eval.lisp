@@ -1,7 +1,3 @@
-(defpackage webspad
-    (:use common-lisp)
-    (:documentation "see docs"))
-
 (in-package :webspad)
 
 
@@ -145,6 +141,11 @@
                            :algebra  (get-algform alg)
                            :spad-type  (get-type-string alg))))
 
+
+(defun spad-eval (code)
+  (let ((*package* (find-package :boot))
+        (alg (boot::|parseAndEvalToString| code)))
+          (format nil "~{~A~%~}" alg)))
 
 
 (defun has-type (result)

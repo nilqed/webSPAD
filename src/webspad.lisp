@@ -1,1 +1,3 @@
-(ql:quickload "hunchentoot")
+(defpackage webspad
+    (:use common-lisp)
+    (:documentation "see docs"))

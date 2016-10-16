@@ -6,5 +6,8 @@
   :version "1.0.0"
   :author "Kurt Pagani, <nilqed@gmail.com>"
   :license "BSD, see file LICENSE"
+  :depends-on (#:hunchentoot)
   :pathname "src/"
-:components ((:file "webspad") (:file "server")))
+  :components ((:file "webspad") 
+               (:file "eval") 
+               (:file "server")))
