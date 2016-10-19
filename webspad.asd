@@ -10,4 +10,5 @@
   :pathname "src/"
   :components ((:file "webspad") 
                (:file "eval") 
+               (:file "json")
                (:file "server")))
