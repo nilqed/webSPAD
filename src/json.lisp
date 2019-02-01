@@ -4,30 +4,34 @@
 (defun bool-to-str (s) (if s "true" "false"))
 
 (defun encode-json (data)
-  (defvar flags (webspad-data-format-flags data))
-  (format nil "{ \"input\":\"~A\",~
-                 \"multiline?\":\"~A\",~
-                 \"spad-type\":\"~A\",~
-                 \"algebra\":\"~A\",~
-                 \"charybdis\":\"~A\",~
-                 \"tex\":\"~A\",~
-                 \"html\":\"~A\",~
-                 \"mathml\":\"~A\",~
-                 \"formula\":\"~A\",~
-                 \"fortran\":\"~A\",~
-                 \"texmacs\":\"~A\",~
-                 \"openmath\":\"~A\",~
+  (setf flags (webspad-data-format-flags data))
+  (format nil "{ \"input\":~S,~
+                 \"stdout\":~S,~
+                 \"stderr\":~S,~
+                 \"multiline?\":~S,~
+                 \"spad-type\":~S,~
+                 \"algebra\":~S,~
+                 \"charybdis\":~S,~
+                 \"tex\":~S,~
+                 \"html\":~S,~
+                 \"mathml\":~S,~
+                 \"formula\":~S,~
+                 \"fortran\":~S,~
+                 \"texmacs\":~S,~
+                 \"openmath\":~S,~
                  \"format-flags\": {~
-                   \"algebra\":\"~A\",~
-                   \"tex\":\"~A\",~
-                   \"html\":\"~A\",~
-                   \"mathml\":\"~A\",~
-                   \"formula\":\"~A\",~
-                   \"fortran\":\"~A\",~
-                   \"texmcas\":\"~A\",~
-                   \"openmath\":\"~A\"~
+                   \"algebra\":~S,~
+                   \"tex\":~S,~
+                   \"html\":~S,~
+                   \"mathml\":~S,~
+                   \"formula\":~S,~
+                   \"fortran\":~S,~
+                   \"texmcas\":~S,~
+                   \"openmath\":~S~
                    }}"
                    (webspad-data-input data)
+                   (webspad-data-stdout data)
+                   (webspad-data-stderr data)
                    (bool-to-str (webspad-data-multiline? data))
                    (webspad-data-spad-type data)
                    (webspad-data-algebra data)
